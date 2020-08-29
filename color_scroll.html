@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="wrapper">
+            <div class="color_panel" id="color_1" style="background-color: black;" onclick="slide()"></div>
+            <div class="color_panel" id="color_2" style="background-color: violet"></div>
+            <div class="color_panel" id="color_3" style="background-color: blue;"></div>
+            <div class="color_panel" id="color_4" style="background-color: green;"></div>
+            <div class="color_panel" id="color_5" style="background-color: yellowgreen;"></div>
+            <div class="color_panel" id="color_6" style="background-color: yellow;"></div>
+            <div class="color_panel" id="color_7" style="background-color: orange;"></div>
+            <div class="color_panel" id="color_8" style="background-color: red;"></div>
+            <div class="color_panel" id="color_9" style="background-color: black;"></div>
+        </div>
+        
+        <script src="" async defer></script>
+    </body>
+</html>
+<style>
+
+    .wrapper{
+        width: 200vw;
+        padding-right: 100%;
+    }
+
+    .color_panel{
+        height: 100%;
+        position:absolute;
+    }
+
+    #color_1{
+        width: 100%;
+    }
+
+    #color_2{
+        width: 85%;
+    }
+
+    #color_3{
+        width: 75%;
+    }
+
+    #color_4{
+        width: 65%;
+    }
+
+    #color_5{
+        width: 55%;
+    }
+
+    #color_6{
+        width: 45%;
+    }
+
+    #color_7{
+        width: 35%;
+    }
+
+    #color_8{
+        width: 25%;
+    }
+
+    #color_9{
+        width: 15%;
+    }
+</style>
+
+<script type="text/javascript">
+    
+    function slide(){
+        var panels = document.getElementsByClassName("color_panel");
+        for (i = 0; i < panels.length; i++){
+            move_right(panels[i])
+        }
+    }
+
+    function move_right(box) {
+        var right_side = innerWidth
+        var pos = 0
+        console.log(box)
+        while (pos < right_side){
+            box.setAttribute("style", "left:1")
+            wait(10)
+            pos++
+        }
+    }
+    
+</script>
