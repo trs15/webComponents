@@ -15,88 +15,225 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+       
         <div class="wrapper">
-            <div class="color_panel" id="color_1" style="background-color: black;" onclick="slide()"></div>
-            <div class="color_panel" id="color_2" style="background-color: violet"></div>
-            <div class="color_panel" id="color_3" style="background-color: blue;"></div>
-            <div class="color_panel" id="color_4" style="background-color: green;"></div>
-            <div class="color_panel" id="color_5" style="background-color: yellowgreen;"></div>
-            <div class="color_panel" id="color_6" style="background-color: yellow;"></div>
-            <div class="color_panel" id="color_7" style="background-color: orange;"></div>
-            <div class="color_panel" id="color_8" style="background-color: red;"></div>
-            <div class="color_panel" id="color_9" style="background-color: black;"></div>
+            <div class="panel" id="panel_1"><p class="panel_letter" style="color: #70C6FF;">T</p><div class="color" style="background-color: #70C6FF"></div></div>
+            <div class="panel" id="panel_2" ><p class="panel_letter" style="color: #5CBEFF;">R S</p><div class="color" style="background-color: #5CBEFF;"></div></div>
+             <div class="panel" id="panel_3" ><p class="panel_letter" style="color: #47B6FF;">I C</p><div class="color" style="background-color: #47B6FF;"></div></div>
+            <div class="panel" id="panel_4" ><p class="panel_letter" style="color: #33ADFF;">S O</p><div class="scroll_box"><p>Scroll</p></div><div class="color"style="background-color: #33ADFF;"></div></div>
+             <div class="panel" id="panel_5"><p class="panel_letter" style="color: #1FA5FF;">T T</p><div class="color" style="background-color: #1FA5FF;"></div></div>
+            <div class="panel" id="panel_6" ><p class="panel_letter" style="color: #0A9DFF;">A T</p><div class="color" style="background-color: #0A9DFF;"></div></div>
+            <div class="panel" id="panel_7"><p class="panel_letter" style="color: #0093F5;">N</p><div class="color" style="background-color: #0093F5;"></div></div>
+           
         </div>
-        
-        <script src="" async defer></script>
+        <div class="black_panel right" style="background-color: black;"></div>
+        <div class="black_panel left" style="background-color: black;"></div>
+        <div class="page">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum est in illo? Possimus eos nam est, nemo nihil autem quos ea alias recusandae maxime quod aliquam voluptatem magnam facilis rerum.</p>
+        </div>
     </body>
 </html>
 <style>
 
+
+    :root{
+        --offset-x: -100%;
+        --offset-y: 100%;
+        --scroll-text-opacity: 0%;
+    }
+
+    body{
+        margin: 0;
+        background-color: black;
+    }
+
     .wrapper{
-        width: 200vw;
-        padding-right: 100%;
-    }
-
-    .color_panel{
         height: 100%;
-        position:absolute;
+        position: relative;
+        left: var(--offset-x);
     }
 
-    #color_1{
+    .left{
+        left: 0;
+    }
+
+    .right{
+        left: 85vw;
+    }
+
+    .black_panel{
+        height: 100vh;
+        position: absolute;
+        width: 15vw;
+    }
+
+    .panel{
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        right: var(--offset-x);
+        width: 10vw;
+        background-color: black;
+    }
+
+    .panel_letter{
+        position: absolute;
+        font-size: 10vw;
+        text-align: center;
+        width: 10vw;
+    }
+
+    .color{
         width: 100%;
+        height: var(--offset-y);
+        position: absolute;
+        top: 0%;
     }
 
-    #color_2{
-        width: 85%;
+    #panel_1{
+        left: 15vw;
     }
 
-    #color_3{
-        width: 75%;
+    #panel_2{
+        left: 25vw;
     }
 
-    #color_4{
-        width: 65%;
+    #panel_3{
+        left: 35vw;
     }
 
-    #color_5{
-        width: 55%;
+    #panel_4{
+        left: 45vw;
+    }
+    
+    #panel_5{
+        left: 55vw;
     }
 
-    #color_6{
-        width: 45%;
+    #panel_6{
+        left: 65vw;
     }
 
-    #color_7{
-        width: 35%;
+    #panel_7{
+        left: 75vw;
+    }
+   
+    .page{
+        position: absolute;
+        top: 100vh;
+        left: 15vw;
+        width: 70vw;
+        background-color: white;
+
     }
 
-    #color_8{
-        width: 25%;
+    .scroll_box{
+        position: absolute;
+        color: white;
+        bottom: 10%;
+        width: 100%;
+        text-align: center;
+        opacity: var(--scroll-text-opacity);
     }
 
-    #color_9{
-        width: 15%;
+    .scroll_box p{
+        font-size: 150%;
     }
+
 </style>
 
 <script type="text/javascript">
+
+    let root = document.documentElement;
+    let status = "play"
     
-    function slide(){
+    window.onscroll = function stopAnimations(){
+        status = "pause"
+    }
+
+    window.onload = function slide()
+    {
         var panels = document.getElementsByClassName("color_panel");
-        for (i = 0; i < panels.length; i++){
-            move_right(panels[i])
+        move_right(panels, 1)
+    }
+
+    function move_right() { 
+        let offset = getComputedStyle(root).getPropertyValue('--offset-x');
+        var value = offset.split('%')
+        value = parseInt(value[0])
+
+        if (value <= -5) {
+            newOffset = value + 5
+            newOffset = newOffset + '%'
+            console.log(newOffset)
+            root.style.setProperty('--offset-x', newOffset);
+            setTimeout(move_right, 25);
+        }
+
+        else {
+            setTimeout(slide_up, 100)
+        }
+      
+    }
+    
+    function slide_up(){
+        let offset = getComputedStyle(root).getPropertyValue('--offset-y');
+        
+        var value = offset.split('%')
+        value = parseInt(value[0])
+
+
+        if (value >= 0) {
+            newOffset = value - 5
+            newOffset = newOffset + '%'
+            console.log(newOffset)
+            root.style.setProperty('--offset-y', newOffset);
+            setTimeout(slide_up, 25);
+        }
+
+        else {
+            setTimeout(fadeIn, 100)
         }
     }
 
-    function move_right(box) {
-        var right_side = innerWidth
-        var pos = 0
-        console.log(box)
-        while (pos < right_side){
-            box.setAttribute("style", "left:1")
-            wait(10)
-            pos++
+    function fadeIn() {
+        let offset = getComputedStyle(root).getPropertyValue('--scroll-text-opacity');
+        
+        var value = offset.split('%')
+        value = parseInt(value[0])
+
+
+        if (value < 100 && status != "pause") {
+            newOffset = value + 1
+            newOffset = newOffset + '%'
+            console.log("fadeIn" + newOffset)
+            root.style.setProperty('--scroll-text-opacity', newOffset);
+            setTimeout(fadeIn, 25);
+        }
+
+        else {
+            fadeOut();
         }
     }
-    
+
+    function fadeOut() {
+        let offset = getComputedStyle(root).getPropertyValue('--scroll-text-opacity');
+        
+        var value = offset.split('%')
+        value = parseInt(value[0])
+
+
+        if (value > 0 && status != "pause") {
+            newOffset = value - 1
+            newOffset = newOffset + '%'
+            console.log(newOffset)
+            root.style.setProperty('--scroll-text-opacity', newOffset);
+            setTimeout(fadeOut, 25);
+        }
+
+        else {
+            fadeIn();
+        }
+    }
+
 </script>
